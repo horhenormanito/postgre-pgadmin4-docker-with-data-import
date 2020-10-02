@@ -1,0 +1,28 @@
+version: '2'
+services: 
+    postgres:
+      container_name: 'apex_vis'
+      environment:
+        POSTGRES_DB: apex_vis
+        POSTGRES_USER: admin
+        POSTGRES_PASSWORD: password
+      ports:
+        - "5432:5432"
+      command: -p 5432
+      build:
+        context: .
+        dockerfile: ./Dockerfile.db
+      depends_on:
+        - "pgadmin4"
+      links: 
+        - "pgadmin4"
+
+    pgadmin4:
+      image: dpage/pgadmin4
+      container_name: 'pgadmin4'
+      environment:
+        PGADMIN_DEFAULT_EMAIL: user@domain.local
+        PGADMIN_DEFAULT_PASSWORD: password
+        PGADMIN_LISTENING_PORT: 80
+      ports:
+        - "5050:80"

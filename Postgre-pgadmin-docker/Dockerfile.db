@@ -1,0 +1,33 @@
+FROM postgres:12
+
+#add db create query
+#ADD ./db-create/create_db.sql /docker-entrypoint-initdb.d
+
+#add db table create query
+ADD ./db-table/create_tbl_01_APEX_LICENSE.sql /docker-entrypoint-initdb.d
+ADD ./db-table/create_tbl_02_APEX_WORKINGGROUP.sql /docker-entrypoint-initdb.d
+ADD ./db-table/create_tbl_03_APEX_COMMPORTGROUP.sql /docker-entrypoint-initdb.d
+ADD ./db-table/create_tbl_04_APEX_USER.sql /docker-entrypoint-initdb.d
+ADD ./db-table/create_tbl_05_APEX_FILE.sql /docker-entrypoint-initdb.d
+ADD ./db-table/create_tbl_06_APEX_FLOW.sql /docker-entrypoint-initdb.d
+ADD ./db-table/create_tbl_07_APEX_FILEMONITOR.sql /docker-entrypoint-initdb.d
+ADD ./db-table/create_tbl_08_APEX_GLOBALMERGEPOINT.sql /docker-entrypoint-initdb.d
+ADD ./db-table/create_tbl_09_APEX_SCHEDULE.sql /docker-entrypoint-initdb.d
+ADD ./db-table/create_tbl_10_APEX_IDOC.sql /docker-entrypoint-initdb.d
+ADD ./db-table/create_tbl_11_APEX_COMM_TASK.sql /docker-entrypoint-initdb.d
+
+#add load data query
+ADD ./db-data/load_data.sql /docker-entrypoint-initdb.d
+
+#copy tsv files to import data to each db tables
+COPY  ./db-data/copy_01_APEX_LICENSE.tsv /data/copy_01_APEX_LICENSE.tsv
+COPY  ./db-data/copy_02_APEX_WORKINGGROUP.tsv /data/copy_02_APEX_WORKINGGROUP.tsv
+COPY  ./db-data/copy_03_APEX_COMMPORTGROUP.tsv /data/copy_03_APEX_COMMPORTGROUP.tsv
+COPY  ./db-data/copy_04_APEX_USER.tsv /data/copy_04_APEX_USER.tsv
+COPY  ./db-data/copy_05_APEX_FILE.tsv /data/copy_05_APEX_FILE.tsv
+COPY  ./db-data/copy_06_APEX_FLOW.tsv /data/copy_06_APEX_FLOW.tsv
+COPY  ./db-data/copy_07_APEX_FILEMONITOR.tsv /data/copy_07_APEX_FILEMONITOR.tsv
+COPY  ./db-data/copy_08_APEX_GLOBALMERGEPOINT.tsv /data/copy_08_APEX_GLOBALMERGEPOINT.tsv
+COPY  ./db-data/copy_09_APEX_SCHEDULE.tsv /data/copy_09_APEX_SCHEDULE.tsv
+COPY  ./db-data/copy_10_APEX_IDOC.tsv /data/copy_10_APEX_IDOC.tsv
+COPY  ./db-data/copy_11_APEX_COMM_TASK.tsv /data/copy_11_APEX_COMM_TASK.tsv
